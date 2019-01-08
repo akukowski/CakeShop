@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="header">
+    <div class="logo">
+        <i class="fas fa-birthday-cake"></i>
+        <span class="title">CakeShop</span>
+        <span class="description">Bake your cake</span>
+    </div>
+  </div>
+  <div class="main-container">
+    <div class="message">
+      <div class="single-message" [ngClass]="single.class"  *ngFor="let single of message">
+        <span class="close" (click)="deleteMessage(single)"></span>
+        {{ single.message }}
+      </div> 
+    </div>
+    <div *ngIf="cakes?.length > 0; else noCake" class="cakesList">
+      <div *ngFor="let cake of cakes" class="singleCake">
+        <div class="singleCake__left">
+          <span class="image-container">
+            <img [src]="cake.image" />
+          </span>
+        </div>
+        <div class="singleCake__right">
+          <div class="singleCake__header">
+            <span class="title">
+              {{ cake.name }}
+            </span>
+            <div class="singleCake__option">
+              <button class="button-icon edit" (click)="addEditCake(cake)"></button>
+              <button class="button-icon delete" (click)="deleteCake(cake)"></button>
+            </div>
+          </div>
+          <div class="singleCake__content">
+            {{ cake.description }}
+          </div>
+          <div class="singleCake__footer">
+            <span class="singleCake__portions">
+              <span class="title">Liczba porcji</span>
+              <span class="value"> {{ cake.portions }} </span>
+            </span>
+            <span class="singleCake__price">
+              <span class="title">Cena ciasta</span>
+              <span class="value"> {{ cake.price }} PLN</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noCake>
+      <div class="empty-list">
+          <div class="message-empty">
+            <i class="fas fa-birthday-cake"></i>
+            <span class="title">Nie ma żadnych ciast na liście</span>
+            <span class="tips">Aby dodać pierwsze ciasto kliknij w poniższy link</span>
+          </div>
+        </div>
+    </ng-template>
+  </div>
+  <div class="button-container-fixed">
+    <button class="addCake orange" (click)="addEditCake()"><i></i>Dodaj ciasto</button>
+  </div>
+</div>

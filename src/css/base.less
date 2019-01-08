@@ -1,0 +1,88 @@
+html {
+    font-size: 16px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Sans', sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 190/16rem;
+    border-bottom: @header-border;
+}
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    i {
+        font-size: 5rem;
+        color: @color-gray-light;
+    }
+    span.title {
+        color: @color-orange;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 1rem;
+    }
+    span.description {
+        font-size: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: @color-gray;
+    }
+}
+button {
+    background: transparent;
+    border: 0;
+    &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+.button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    outline: 0;
+    cursor: pointer;
+    &:after {
+        content: '';
+        color: @color-orange;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 1rem;
+    }
+    &.edit {
+        &:after {
+            content: '\f303';
+        }
+    }
+    &.delete {
+        &:after {
+            content: '\f057';
+            font-weight: 400;
+        }
+    }
+}
+button.orange {
+    display: inline-block;
+    min-height: 45/16rem;
+    border: 0;
+    padding: 0.3rem 3rem;
+    border-radius: 2rem;
+    outline: 0;
+    cursor: pointer;
+    color: @color-white;
+    font-size: 1rem;
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.16);
+    background: linear-gradient(to right, rgba(255,223,134,1) 0%, rgba(255,89,28,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdf86', endColorstr='#ff591c', GradientType=1 );
+}

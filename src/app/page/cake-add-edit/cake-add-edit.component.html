@@ -1,0 +1,51 @@
+<div class="main" mat-dialog-content>
+  <form [formGroup]="cakeForm">
+    <div class="image-container">
+      <div class="change-button">
+        <input accept="image/*" formControlName="newImage" type="file" (change)="changeImage($event)" #imageInput>
+        <span class="button-circle button-icon" [ngClass]="{'edit': cake, 'add': !cake}" (click)="imageInput.click()"></span>
+      </div>
+      <div class="image-inside">
+        <img *ngIf="imageCake; else noImage" [src]="imageCake" />
+        <ng-template #noImage>
+            <span class="thumb"></span>
+        </ng-template>
+      </div>
+    </div>
+    <mat-form-field class="input-title" floatLabel="never">
+      <input matInput formControlName="name" maxlength="100" placeholder="Nazwa Ciasta">
+      <mat-error *ngIf="cakeForm.get('name').hasError('required') && cakeForm.get('name').dirty">Pole jest wymagane</mat-error>
+    </mat-form-field>
+    <mat-form-field floatLabel="never">
+        <textarea matInput formControlName="description" #message maxlength="250" placeholder="Opis"></textarea>
+        <mat-hint align="end">{{message.value.length}} / 250</mat-hint>
+    </mat-form-field>
+    <span class="label">Liczba porcji</span>
+    <div class="portions">
+      <label *ngFor="let portion of portions" >
+        <input formControlName="portions" type="radio" [value]="portion">
+        <span>{{ portion }}</span>
+      </label>
+    </div>
+    <div class="price-container">
+      <div class="price-single">
+        <span class="label" >Cena Ciasta</span>
+        <mat-form-field class="input-price" floatLabel="never">
+          <input formControlName="price" type="number" matInput placeholder="0.00">
+          <span class="sufix" matSuffix>PLN</span>
+          <mat-error *ngIf="cakeForm.get('price').hasError('required') && cakeForm.get('price').dirty">Pole jest wymagane</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="price-single">
+      <span class="label">Cena Porcji</span>
+      <mat-form-field  class="input-price" floatLabel="never">
+        <input matInput formControlName="price_portions" [value]="( (cakeForm.get('price').value / cakeForm.get('portions').value).toFixed(2)  )" placeholder="0 PLN">
+        <span class="sufix" matSuffix>PLN</span>
+      </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="action-bar" mat-dialog-action>
+  <button class="orange" [mat-dialog-close]="send()" [disabled]="cakeForm.invalid">Zapisz</button>
+</div>

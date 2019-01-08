@@ -1,0 +1,40 @@
+@import 'vars.less';
+.cake-dialog .mat-dialog-content, .cake-dialog .mat-dialog-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+  
+.mat-dialog-container.ng-trigger-dialogContainer {
+    padding: 0;
+}
+.mat-form-field {
+    width: 100%;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: @color-white;
+}
+.mat-form-field.mat-focused {
+    .mat-form-field-label {
+        color: @color-orange;
+    }
+    .mat-form-field-ripple {
+        background-color: @color-orange;
+    }
+}
+.input-title {
+    &.mat-form-field .mat-form-field-label {
+        position: relative;
+        top: 5px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 20px;
+    }
+}
+.input-price {
+    &.mat-form-field .mat-form-field-label {
+        text-align: center;
+    }
+    input {
+        text-align: center;
+    }
+}
